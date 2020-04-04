@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="order_additional_info">
+            <block class="Ws\Warehouse\Block\Adminhtml\Order\View\Warehouse" name="sales_order_view_warehouse" template="Ws_Warehouse::order/view/warehouse.phtml" />
+        </referenceBlock>
+    </body>
+</page>
