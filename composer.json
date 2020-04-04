@@ -1,5 +1,5 @@
 {
-    "name": "ws/module-sales",
+    "name": "ws/module-warehouse",
     "description": "N/A",
     "require": {
         "magento/module-store": "100.2.*"
@@ -15,7 +15,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Ws\\Sales\\": ""
+            "Ws\\Warehouse\\": ""
         }
     }
 }
