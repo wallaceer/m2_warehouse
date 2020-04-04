@@ -1,5 +1,5 @@
 {
-    "name": "ws/module-warehouse",
+    "name": "ws/warehouse",
     "description": "N/A",
     "require": {
         "magento/module-store": "100.2.*"
