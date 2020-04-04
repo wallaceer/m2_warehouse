@@ -2,13 +2,21 @@
     "name": "ws/warehouse",
     "description": "N/A",
     "require": {
-        "magento/module-store": "100.2.*"
+        "php": "~7.0.0"
     },
     "type": "magento2-module",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Walter Santi",
+            "email": "santi.walter@gmail.com",
+            "homepage": "https://blog.waltersanti.info",
+            "role": "Head"
+        }
     ],
     "autoload": {
         "files": [
