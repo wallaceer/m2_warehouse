@@ -1,7 +1,7 @@
 <?php 
 
 
-namespace Ws\Sales\Setup;
+namespace Ws\Warehouse\Setup;
 
 use \Magento\Framework\Setup\UpgradeSchemaInterface;
 use \Magento\Framework\Setup\SchemaSetupInterface;
@@ -15,7 +15,7 @@ class UpgradeSchema implements UpgradeSchemaInterface{
 		$setup->startSetup();
 		
 		$setup->getConnection()->addColumn(
-				$setup->getTable('sales_order_grid'),
+				$setup->getTable('sales_order'),
 				'warehouse',
 				[
 						'type' => Table::TYPE_TEXT,
@@ -25,6 +25,18 @@ class UpgradeSchema implements UpgradeSchemaInterface{
 						'comment' => 'Warehouse'
 				]
 		);
+
+        $setup->getConnection()->addColumn(
+            $setup->getTable('sales_order_grid'),
+            'warehouse',
+            [
+                'type' => Table::TYPE_TEXT,
+                'length' => 255,
+                'nullable' => true,
+                'default' => '',
+                'comment' => 'Warehouse'
+            ]
+        );
 		
 		$setup->endSetup();
 	}
