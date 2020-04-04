@@ -1,4 +1,49 @@
+<?php $orderStatus = $block->getOrderStatus()?>
 <section class="admin__page-section tcs-shipping-block">
-    <div class="admin__page-section-title"><strong class="title"><?=$block->escapeHtml(__('WAREHOUSE')) ?></strong></div>
-    <div class="admin__page-section-content"><strong class="title"><?= json_encode($block->getWarehouse()) ?></strong></div>
+    <div class="admin__page-section-title"><strong class="title"><?=$block->escapeHtml(__('Warehouse')) ?></strong></div>
+    <div class="admin__page-section-content">
+        <input type="hidden" name="warehouse" id="warehouse" value="<?= $block->getOrderWarehouseByGetOrderId() ?>" />
+        <input type="hidden" name="orderid" id="orderid" value="<?= $block->getOrderId() ?>" />
+        <div class="admin__field">
+            <label for="warehouse" class=""><?= $block->escapeHtml(__('Warehouse for this order:')) ?></label>
+            <?php if($orderStatus === 'closed'){?>
+                <label for="warehouse" class="admin__field-label"><?= $block->getOrderWarehouseByGetOrderId()?></label>
+             <?php } else { ?>
+            <div class="admin__field-control">
+                <select name="new_warehouse" id="new_warehouse" class="admin__control-select">
+                    <?php foreach ($block->getWarehouse() as $_code => $_label) : ?>
+                        <option value="<?= $block->escapeHtmlAttr($_code) ?>"<?php if ($_code == $block->getOrderWarehouseByGetOrderId()) : ?> selected="selected"<?php endif; ?>><?= $block->escapeHtml($_label) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
 </section>
+<script>
+    require(['jquery'],function(){
+        jQuery(document).ready(function() {
+            jQuery("#warehouse_status").change(function(){
+
+                var warehouse = jQuery("input[name='warehouse']").val();
+                var new_warehouse = jQuery("input[name='new_warehouse']").val();
+                var orderId = jQuery("input[name='orderId']").val();
+
+                var url = "<?php echo $block->getAdminUrl().'ws/warehouse/update' ?>";
+                if(new_warehouse !== warehouse){
+                    jQuery.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {orderid:orderId,warehouse:new_warehouse},
+                        showLoader: true,
+                        cache: false,
+                        success: function(response){
+                            console.log(response.output);
+                        }
+                    });
+                    return false;
+                }
+            });
+        });
+    });
+</script>

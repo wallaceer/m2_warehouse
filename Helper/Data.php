@@ -6,6 +6,11 @@ use Magento\Framework\Api\SearchCriteriaBuilderFactory;
 use Magento\InventoryApi\Api\SourceRepositoryInterface;
 
 
+
+/**
+ * Class Data
+ * @package Ws\Warehouse\Helper
+ */
 class Data extends \Magento\Framework\App\Helper\AbstractHelper{
 
     public $_options = [];
@@ -20,11 +25,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
      */
     private $searchCriteriaBuilderFactory;
 
+
+
     /**
      * Place constructor.
      *
      * @param SourceRepositoryInterface $sourceRepository
      * @param SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory
+     * @param OrderRepository $orderRepository
      */
     public function __construct(
         SourceRepositoryInterface $sourceRepository,
@@ -32,6 +40,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
     ) {
         $this->sourceRepository = $sourceRepository;
         $this->searchCriteriaBuilderFactory = $searchCriteriaBuilderFactory;
+
     }
 
     /**
@@ -40,20 +49,19 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper{
      */
     public function getAllOptions()
     {
-        if (!$this->_options) {
+        //if (!$this->_options) {
             /** @var SearchCriteriaBuilder $searchCriteriaBuilder */
             $searchCriteriaBuilder = $this->searchCriteriaBuilderFactory->create();
             $searchCriteria = $searchCriteriaBuilder->create();
             $sources = $this->sourceRepository->getList($searchCriteria)->getItems();
             foreach ($sources as $source) {
-                $this->_options[] = [
-                    'value' => $source->getCountryId(),
-                    'label' => $source->getCountryId()
-                ];
+                $this->_options[$source->getName()] = $source->getDescription();
             }
-        }
+        //}
         return $this->_options;
     }
+
+
 
 
 }
