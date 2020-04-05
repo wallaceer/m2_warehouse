@@ -28,7 +28,7 @@ class Warehouse extends Column
                 $order  = $this->_orderRepository->get($item["entity_id"]);
                 $warehouse = $order->getData("warehouse");
 
-                // $this->getData('name') returns the name of the column so in this case it would return export_status
+                // $this->getData('name') returns the name of the column so in this case it would return warehouse
                 $item[$this->getData('name')] = $warehouse;
             }
         }

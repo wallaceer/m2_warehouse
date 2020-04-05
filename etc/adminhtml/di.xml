@@ -1,0 +1,6 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <plugin name="sales_order_additional_columns" type="Ws\Warehouse\Plugins\AddColumnsSalesOrderGridCollection" sortOrder="100" disabled="false" />
+    </type>
+    <preference for="Magento\Ui\Model\Export\ConvertToCsv" type="Ws\Warehouse\Model\Export\ConvertToCsv" />
+</config>
