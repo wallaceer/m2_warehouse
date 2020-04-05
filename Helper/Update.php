@@ -12,15 +12,30 @@ class Update extends \Magento\Framework\App\Helper\AbstractHelper{
         $this->orderRepository = $orderRepository;
     }
 
-    public function execute()
+    public function setData($data)
     {
-        $data = $this->getRequest()->getPostValue();
-        echo "<pre>";
-        print_r($data);
-        exit;
-        $order = $this->orderRepository->get(1);
-        $order->setWarehouse('new@amasty.com');
-        $this->orderResourceModel->save($order);
+        $orderid = $warehouse = null;
+        try {
+            if(preg_match('/[0-9]+/', $data['orderid'])){
+                $orderid = $data['orderid'];
+            }
+            if(preg_match('/[a-zA-z0-9]+/', $data['warehouse'])){
+                $warehouse = $data['warehouse'];
+            }
+            if($orderid !== null && $warehouse !== null){
+                $order = $this->orderRepository->get($orderid);
+                $order->setWarehouse($warehouse);
+                try {
+                    return $this->orderResourceModel->save($order);
+                } catch (\Exception $e){
+                    return $e->getMessage();
+                }
+            }
+        }
+        catch (\Exception $e){
+            return $e->getMessage();
+        }
+
     }
 
 }

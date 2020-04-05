@@ -22,6 +22,8 @@ class Warehouse extends \Magento\Backend\Block\Template
      */
     public $order;
 
+    public $_storeManager;
+
     /**
      * Warehouse constructor.
      * @param \Magento\Backend\Block\Template\Context $context
@@ -35,11 +37,13 @@ class Warehouse extends \Magento\Backend\Block\Template
         \Magento\Framework\Registry $registry,
         Data $mydata,
         OrderRepository $orderRepository,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         array $data = []
     ) {
         $this->_coreRegistry = $registry;
         $this->_mydata = $mydata;
         $this->_orderRepository = $orderRepository;
+        $this->_storeManager = $storeManager;
         parent::__construct($context, $data);
     }
 
@@ -100,6 +104,10 @@ class Warehouse extends \Magento\Backend\Block\Template
      */
     public function getOrderStatus(): string {
         return $this->getOrder()->getStatus();
+    }
+
+    public function adminUrl(){
+        return $this->_storeManager('Magento\Backend\Helper\Data')->getHomePageUrl();
     }
 
 }

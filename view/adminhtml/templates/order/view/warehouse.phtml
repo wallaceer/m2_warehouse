@@ -2,6 +2,7 @@
 <section class="admin__page-section tcs-shipping-block">
     <div class="admin__page-section-title"><strong class="title"><?=$block->escapeHtml(__('Warehouse')) ?></strong></div>
     <div class="admin__page-section-content">
+        <?php echo $this->getBlockHtml('formkey')?>
         <input type="hidden" name="warehouse" id="warehouse" value="<?= $block->getOrderWarehouseByGetOrderId() ?>" />
         <input type="hidden" name="orderid" id="orderid" value="<?= $block->getOrderId() ?>" />
         <div class="admin__field">
@@ -21,23 +22,27 @@
     </div>
 </section>
 <script>
-    require(['jquery'],function(){
+    require([
+        'jquery',
+    ],function(){
         jQuery(document).ready(function() {
-            jQuery("#warehouse_status").change(function(){
+            jQuery("#new_warehouse").change(function(){
 
                 var warehouse = jQuery("input[name='warehouse']").val();
-                var new_warehouse = jQuery("input[name='new_warehouse']").val();
-                var orderId = jQuery("input[name='orderId']").val();
+                var new_warehouse = jQuery("select[name='new_warehouse']").val();
+                var orderId = jQuery("input[name='orderid']").val();
+                var formKey = jQuery("[name='form_key']").val();
 
-                var url = "<?php echo $block->getAdminUrl().'ws/warehouse/update' ?>";
+                var url = '/<?= $this->helper('Magento\Backend\Helper\Data')->getAreaFrontName()?>/warehouse/update';
                 if(new_warehouse !== warehouse){
                     jQuery.ajax({
                         url: url,
                         type: "POST",
-                        data: {orderid:orderId,warehouse:new_warehouse},
+                        data: {orderid:orderId,warehouse:new_warehouse,form_key:formKey},
                         showLoader: true,
                         cache: false,
                         success: function(response){
+                            jQuery("select[name='warehouse']").val(new_warehouse);
                             console.log(response.output);
                         }
                     });
