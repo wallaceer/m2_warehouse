@@ -5,7 +5,7 @@
         "php": "7.*"
     },
     "type": "magento2-module",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
@@ -14,8 +14,7 @@
         {
             "name": "Walter Santi",
             "email": "santi.walter@gmail.com",
-            "homepage": "https://blog.waltersanti.info",
-            "role": "Head"
+            "homepage": "https://blog.waltersanti.info"
         }
     ],
     "autoload": {

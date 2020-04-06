@@ -28,7 +28,11 @@ To install it with composer you can insert this rows in your magento's composer.
         }
     }
     
-After edited composer.json remember to launch composer update    
+After edited composer.json 
+- launch composer update
+- verify the module status with bin/magento module:status | grep Ws_Warehouse
+- enable the module, if necessary, with bin/magento module:enable Ws_Warehouse
+- run bin/magento setup:upgrade
     
 For a manual installation, you can copy the module in your magento app/code.
 

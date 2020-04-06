@@ -36,11 +36,7 @@ class Index extends \Magento\Backend\App\Action{
     {
         try {
             $postValues = $this->getRequest()->getPostValue();
-            //echo '<pre>';
-            //print_r($postValues);
-            //exit;
             $this->_update->setData($postValues);
-            //return $this->jsonResponse('your response');
         } catch (\Magento\Framework\Exception\LocalizedException $e) {
             return $this->jsonResponse($e->getMessage());
         } catch (\Exception $e) {
@@ -52,16 +48,18 @@ class Index extends \Magento\Backend\App\Action{
     /**
      * Create json response
      *
+     * @param string $response
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function jsonResponse($response = '')
+    public function jsonResponse($response = ''): \Magento\Framework\Controller\ResultInterface
     {
         return $this->getResponse()->representJson(
             $this->jsonHelper->jsonEncode($response)
         );
     }
 
-    protected function _isAllowed() {
+    protected function _isAllowed(): bool
+    {
         return true;
     }
 

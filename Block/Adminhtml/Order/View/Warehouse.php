@@ -4,8 +4,13 @@ namespace Ws\Warehouse\Block\Adminhtml\Order\View;
 use Ws\Warehouse\Helper\Data;
 use Magento\Sales\Model\OrderRepository;
 
+/**
+ * Class Warehouse
+ * @package Ws\Warehouse\Block\Adminhtml\Order\View
+ */
 class Warehouse extends \Magento\Backend\Block\Template
 {
+
 
     /**
      * @var Data
@@ -22,6 +27,9 @@ class Warehouse extends \Magento\Backend\Block\Template
      */
     public $order;
 
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
     public $_storeManager;
 
     /**
@@ -106,8 +114,19 @@ class Warehouse extends \Magento\Backend\Block\Template
         return $this->getOrder()->getStatus();
     }
 
+    /**
+     * @return mixed
+     */
     public function adminUrl(){
         return $this->_storeManager('Magento\Backend\Helper\Data')->getHomePageUrl();
+    }
+
+    /**
+     * @return array
+     */
+    public function excludedOrderStatus(): array
+    {
+        return ['closed','complete','canceled'];
     }
 
 }

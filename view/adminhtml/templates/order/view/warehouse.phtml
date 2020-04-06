@@ -7,13 +7,14 @@
         <input type="hidden" name="orderid" id="orderid" value="<?= $block->getOrderId() ?>" />
         <div class="admin__field">
             <label for="warehouse" class=""><?= $block->escapeHtml(__('Warehouse for this order:')) ?></label>
-            <?php if(in_array($orderStatus, ['closed','complete','canceled'])){?>
+            <?php if(in_array($orderStatus, $block->excludedOrderStatus())){?>
                 <label for="warehouse" class="admin__field-label"><?= $block->getOrderWarehouseByGetOrderId()?></label>
              <?php } else { ?>
             <div class="admin__field-control">
                 <select name="new_warehouse" id="new_warehouse" class="admin__control-select">
+                    <option></option>
                     <?php foreach ($block->getWarehouse() as $_code => $_label) : ?>
-                        <option value="<?= $block->escapeHtmlAttr($_code) ?>"<?php if ($_code == $block->getOrderWarehouseByGetOrderId()) : ?> selected="selected"<?php endif; ?>><?= $block->escapeHtml($_label) ?></option>
+                        <option value="<?= $block->escapeHtmlAttr($_code) ?>"<?php if ($_code === $block->getOrderWarehouseByGetOrderId()) : ?> selected="selected"<?php endif; ?>><?= $block->escapeHtml($_label) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
