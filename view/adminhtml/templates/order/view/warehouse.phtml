@@ -1,4 +1,4 @@
-<?php $orderStatus = $block->getOrderStatus()?>
+<?php $orderStatus = $block->getOrderStatus() ?? 'opened'?>
 <section class="admin__page-section tcs-shipping-block">
     <div class="admin__page-section-title"><strong class="title"><?=$block->escapeHtml(__('Warehouse')) ?></strong></div>
     <div class="admin__page-section-content">
@@ -7,7 +7,7 @@
         <input type="hidden" name="orderid" id="orderid" value="<?= $block->getOrderId() ?>" />
         <div class="admin__field">
             <label for="warehouse" class=""><?= $block->escapeHtml(__('Warehouse for this order:')) ?></label>
-            <?php if($orderStatus === 'closed'){?>
+            <?php if(in_array($orderStatus, ['closed','complete','canceled'])){?>
                 <label for="warehouse" class="admin__field-label"><?= $block->getOrderWarehouseByGetOrderId()?></label>
              <?php } else { ?>
             <div class="admin__field-control">
