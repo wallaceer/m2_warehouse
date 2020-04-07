@@ -16,7 +16,7 @@ class Index extends \Magento\Backend\App\Action{
      * @param \Magento\Framework\Json\Helper\Data $jsonHelper
      */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
+        \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Magento\Framework\Json\Helper\Data $jsonHelper,
         \Ws\Warehouse\Helper\Update $update
