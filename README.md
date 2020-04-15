@@ -1,6 +1,7 @@
 # Order warehouse for Magento 2
 
-##Description
+## Description
+
 This module help you to manage warehouse for order in Magento 2.
 
 In Magento 2 there is the inventory management function. Whit this function you can manage a different inventory and a different warehouse for products.
@@ -13,21 +14,24 @@ The value of the warehouse is present in order's detail, in order grid and in cs
 You can set the warehouse only for orders in work in progress.
 If the order is closed or refunded, or canceled isn't possible to set the warehouse.
 
-##Setup
+## Setup
+
 You can install this module via Composer or manual setup.
 To install it with composer you can insert this rows in your magento's composer.json
-
+```
 "require": {
 	"ws/warehouse": "1.0.*"
     },
-
+```
+```
 "repositories": {
 	"m2_warehouse":{
             "type": "git",
             "url": "git@github.com:wallaceer/m2_warehouse.git"
         }
     }
-    
+```
+  
 After edited composer.json 
 - launch composer update
 - verify the module status with bin/magento module:status | grep Ws_Warehouse
@@ -36,4 +40,4 @@ After edited composer.json
     
 For a manual installation, you can copy the module in your magento app/code.
 
-In always case, after, remember to launch bin/magento setup:upgrade    
+In every case remember to launch the command "bin/magento setup:upgrade"   
