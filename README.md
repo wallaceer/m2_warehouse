@@ -34,10 +34,18 @@ To install it with composer you can insert this rows in your magento's composer.
   
 After edited composer.json 
 - launch composer update
-- verify the module status with bin/magento module:status | grep Ws_Warehouse
-- enable the module, if necessary, with bin/magento module:enable Ws_Warehouse
+- verify the module status with `bin/magento module:status | grep Ws_Warehouse`
+- enable the module, if necessary, with `bin/magento module:enable Ws_Warehouse`
 - run bin/magento setup:upgrade
     
-For a manual installation, you can copy the module in your magento app/code.
+For a manual installation:
+* copy the module in your magento `app/code`
+* run `bin/magento setup:upgrade`
+* verify the module status with `bin/magento module:status | grep Ws_Customer`
 
-In every case remember to launch the command "bin/magento setup:upgrade"   
+
+In every case remember to launch the command `bin/magento setup:upgrade` for cleaning the cache
+
+
+## Note
+This module was developed with Magento 2.3.4 CE   
